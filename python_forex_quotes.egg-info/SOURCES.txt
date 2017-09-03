@@ -1,0 +1,8 @@
+setup.py
+python_forex_quotes/ForexDataClient.py
+python_forex_quotes/__init__.py
+python_forex_quotes.egg-info/PKG-INFO
+python_forex_quotes.egg-info/SOURCES.txt
+python_forex_quotes.egg-info/dependency_links.txt
+python_forex_quotes.egg-info/not-zip-safe
+python_forex_quotes.egg-info/top_level.txt
