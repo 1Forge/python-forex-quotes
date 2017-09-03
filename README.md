@@ -1,6 +1,6 @@
-# python-forex-quotes
+# python_forex_quotes
 
-python-forex-quotes is a Python Library for fetching realtime forex quotes
+python_forex_quotes is a Python Library for fetching realtime forex quotes
 
 # Table of Contents
 
