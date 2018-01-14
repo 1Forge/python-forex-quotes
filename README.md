@@ -39,6 +39,7 @@ client = python_forex_quotes.ForexDataClient('YOUR_API_KEY')
 
 print client.getSymbols()
 ```
+
 ### Get quotes for specified symbols:
 ```python
 import python_forex_quotes
@@ -47,17 +48,13 @@ client = python_forex_quotes.ForexDataClient('YOUR_API_KEY')
 print client.getQuotes(['EURUSD', 'GBPJPY'])
 ```
 
-
 ### Convert from one currency to another:
 ```python
 import python_forex_quotes
 client = python_forex_quotes.ForexDataClient('YOUR_API_KEY')
 
-
 print client.convert('EUR', 'USD', 100)
 ```
-
-
 
 ### Check if the market is open:
 ```python
