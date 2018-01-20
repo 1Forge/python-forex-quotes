@@ -10,6 +10,7 @@ python_forex_quotes is a Python Library for fetching realtime forex quotes
     - [List of Symbols available](#get-the-list-of-available-symbols)
     - [Get quotes for specific symbols](#get-quotes-for-specified-symbols)
     - [Convert from one currency to another](#convert-from-one-currency-to-another)
+- [Contributing](#contributing)
 - [Support / Contact](#support-and-contact)
 - [License / Terms](#license-and-terms)
 
@@ -73,6 +74,9 @@ client = python_forex_quotes.ForexDataClient('YOUR_API_KEY')
 
 print client.quota()
 ```
+
+## Contributing
+Thank you for considering contributing! Any issues, bug fixes, suggestions, improvements or help in any other way is always appreciated.  Please feel free to open an issue or create a pull request.
 
 ## Support and Contact
 Please contact me at contact@1forge.com if you have any questions or requests.
