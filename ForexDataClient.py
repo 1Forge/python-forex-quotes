@@ -4,7 +4,7 @@ import urllib, json
 class ForexDataClient:
     def __init__(self, api_key):
         self.api_key = api_key
-        self.base_uri = 'http://forex.1forge.com/1.0.2/'
+        self.base_uri = 'http://forex.1forge.com/1.0.3/'  # Reflects v1.0.3 as on the web documentation
 
     def fetch(self, uri):
         response = urllib.urlopen(self.base_uri + uri + '&api_key=' + self.api_key)
