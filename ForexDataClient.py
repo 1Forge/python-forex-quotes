@@ -1,5 +1,9 @@
+from __future__ import print_function
 import json
-from urllib.request import urlopen
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 
 class ForexDataClient:
     def __init__(self, api_key):
