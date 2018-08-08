@@ -1,5 +1,9 @@
-import urllib, json
-
+from __future__ import print_function
+import json
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 
 class ForexDataClient:
     def __init__(self, api_key):
@@ -7,7 +11,7 @@ class ForexDataClient:
         self.base_uri = 'http://forex.1forge.com/1.0.3/'  # Reflects v1.0.3 as on the web documentation
 
     def fetch(self, uri):
-        response = urllib.urlopen(self.base_uri + uri + '&api_key=' + self.api_key)
+        response = urlopen(self.base_uri + uri + '&api_key=' + self.api_key)
         return json.load(response)
 
     def quota(self):
@@ -24,7 +28,7 @@ class ForexDataClient:
         try:
             return data['market_is_open']
         except:
-            print data
+            print(data)
 
     def convert(self, currency_from, currency_to, quantity):
         return self.fetch('convert?from=' + currency_from + '&to=' + currency_to + '&quantity=' + str(quantity))
