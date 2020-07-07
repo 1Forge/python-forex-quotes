@@ -15,8 +15,8 @@ python_forex_quotes is a Python Library for fetching realtime forex quotes
 - [License / Terms](#license-and-terms)
 
 ## Requirements
-* Python 2.7.*
-* An API key which you can obtain for free at http://1forge.com/forex-data-api
+* Python 3.7.*
+* An API key which you can obtain for free at https://1forge.com/register
 
 ## Installation
 ```
@@ -46,7 +46,7 @@ print client.getSymbols()
 import python_forex_quotes
 client = python_forex_quotes.ForexDataClient('YOUR_API_KEY')
 
-print client.getQuotes(['EURUSD', 'GBPJPY'])
+print client.getQuotes(['EUR/USD', 'GBP/JPY'])
 ```
 
 ### Convert from one currency to another:
@@ -73,6 +73,46 @@ import python_forex_quotes
 client = python_forex_quotes.ForexDataClient('YOUR_API_KEY')
 
 print client.quota()
+```
+## Websocket
+### Subscribe to all the pairs:
+```python
+import python_forex_quotes
+
+def onUpdate(value):
+    print(value)
+
+def onMessage(value):
+    print(value)
+
+def onConnect():
+    client.subscribeToAll()
+
+client = python_forex_quotes.ForexDataClient('YOUR_API_KEY')
+client.onUpdate(onUpdate)
+client.onConnect(onConnect)
+client.onMessage(onMessage)
+client.connect()
+```
+
+### Subscribe to certain the pairs:
+```python
+def onConnect():
+    client.subscribeTo("USD/CHF")
+    client.subscribeTo(["EUR/USD", "BTC/USD"])
+```
+
+### Unsubscribe from all the pairs:
+```python
+def onConnect():
+    client.unsubscribeFromAll()
+```
+
+### Unsubscribe from certain the pairs:
+```python
+def onConnect():
+    client.unsubscribeFrom("USD/CHF")
+    client.unsubscribeFrom(["EUR/USD", "BTC/USD"])
 ```
 
 ## Contributing

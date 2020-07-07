@@ -14,14 +14,13 @@ import time
 
 class ForexDataClient:
     def __init__(self, api_key):
-        self.isPair = False
-        self.test = ""
         self.api_key = api_key
         self.base_uri = 'https://api.1forge.com/'
         self.socket_uri = "wss://sockets.1forge.com/socket"
-        '''added'''
         self.ws = None
-        # self.sym =
+        self.onUpdateFunc = None
+        self.onConnectFunc = None
+        self.onMessageFunc = None
 
 # REST
 
@@ -55,6 +54,15 @@ class ForexDataClient:
 
 # SOCKET
 
+    def onUpdate(self, func):
+        self.onUpdateFunc = func
+
+    def onConnect(self, func):
+        self.onConnectFunc = func
+
+    def onMessage(self, func):
+        self.onMessageFunc = func
+
     def connect(self):
         self.ws = websocket.WebSocketApp(self.socket_uri,
                                          on_message=self.on_message,
@@ -63,44 +71,43 @@ class ForexDataClient:
         self.ws.on_open = self.on_open()
         self.ws.run_forever()
 
-    def subscribeTo(self, pairs):
-        self.sym = pairs
-        self.test = "subscribe_to|"
-        self.isPair = True
+    def subscribeTo(self, pair):
+        if(type(pair) == str):
+            self.ws.send("subscribe_to|" + pair)
+        else:
+            for p in pair:
+                self.subscribeTo(p)
 
     def subscribeToAll(self):
-        self.test = "subscribe_to_all"
+        self.ws.send("subscribe_to_all")
 
-    def unsubscribeFrom(self, pairs):
-        self.sym = pairs
-        self.test = "unsubscribe_from|"
-        self.isPair = True
+    def unsubscribeFrom(self, pair):
+        if(type(pair) == str):
+            self.ws.send("unsubscribe_from|" + pair)
+        else:
+            for p in pair:
+                self.unsubscribeFrom(p)
 
     def unsubscribeFromAll(self):
-        self.test = "unsubscribe_from_all"
+        self.ws.send("unsubscribe_from_all")
 
     def on_message(self, message):
-
-        print("Triggered")
-        return 'true'
-
-        # if "post_login_success" in message:
-        #     return 'LOGGED IN'
-        #     # self.ws.send("subscribe_to|BTC/USD")
-        #     # if self.isPair == True:
-        #     #     for s in self.sym:
-        #     #         self.ws.send(self.test + s)
-        #     # else:
-        #     #     self.ws.send(self.test)
-        #     # print(message)
-        # else:
-        #     print(message)
+        if "post_login_success" in message:
+            self.onConnectFunc()
+        elif "update" in message:
+            msg = message.split("|")
+            self.onUpdateFunc(msg[1])
+        elif "message" in message:
+            msg = message.split("|")
+            self.onMessageFunc(msg[1])
+        else:
+            pass
 
     def on_error(self, error):
         print(error)
 
     def on_close(self):
-        print("### closed ###")
+        ws.close()
 
     def on_open(self):
         def run(*args):
@@ -108,5 +115,4 @@ class ForexDataClient:
                 time.sleep(1)
                 self.ws.send("login|" + self.api_key)
             time.sleep(1)
-            # ws.close()
         thread.start_new_thread(run, ())

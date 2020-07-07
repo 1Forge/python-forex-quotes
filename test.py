@@ -2,23 +2,26 @@
 from ForexDataClient import *
 import sys
 
-try:
 
-    # test = "Hello Test"
-    # print("Hey", test)
-    client = ForexDataClient('0JHZqgJf7V3tvd7BA3MGThQB3NqVX7F9')
-    client.connect()
-    # client.subscribeTo("BTC/USD")
-    # print(client.getQuotes(['EUR/USD']))
-    # client.subscribeTo(["BTC/USD"])
-    print("BTC/USD")
-    # client.subscribeTo(["BTC/USD", "USD/BTC"])
-    # client.subscribeTo(['EUR/USD'])
-    # client.unsubscribeFromAll()
-    # client.subscribeTo("BTC/USD")
-    # client.connect()
-except KeyboardInterrupt:
-    sys.exit(0)
+def onUpdate(value):
+    print(value)
+
+
+def onMessage(value):
+    print(value)
+
+
+def onConnect():
+    # client.subscribeTo("USD/CHF")
+    # client.subscribeTo(["EUR/USD", "BTC/USD"])
+    client.subscribeToAll()
+
+
+client = ForexDataClient('0JHZqgJf7V3tvd7BA3MGThQB3NqVX7F9')
+client.onUpdate(onUpdate)
+client.onConnect(onConnect)
+client.onMessage(onMessage)
+client.connect()
 
 
 # print(client.getQuotes(['EUR/USD']))
