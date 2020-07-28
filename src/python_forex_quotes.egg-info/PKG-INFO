@@ -1,6 +1,6 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.2
 Name: python-forex-quotes
-Version: 1.0
+Version: 2.0.3
 Summary: Forex quote wrapper for 1Forge.com
 Home-page: https://github.com/1forge/python-forex-quotes/
 Author: 1Forge
@@ -9,3 +9,4 @@ License: MIT
 Description: Python library to fetch and parse realtime Forex quotes and convert currencies from 1Forge.com
 Keywords: forex currency trading api
 Platform: UNKNOWN
+Requires-Python: >=3.7

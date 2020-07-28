@@ -1,0 +1,9 @@
+README.md
+setup.py
+src/python_forex_quotes.py
+src/python_forex_quotes.egg-info/PKG-INFO
+src/python_forex_quotes.egg-info/SOURCES.txt
+src/python_forex_quotes.egg-info/dependency_links.txt
+src/python_forex_quotes.egg-info/not-zip-safe
+src/python_forex_quotes.egg-info/requires.txt
+src/python_forex_quotes.egg-info/top_level.txt
