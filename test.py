@@ -1,30 +1,31 @@
-# import ForexDataClient
+import ForexDataClient
 from ForexDataClient import *
 import sys
 
-
-def onUpdate(value):
-    print(value)
-
-
-def onMessage(value):
-    print(value)
-
-
-def onConnect():
-    # client.subscribeTo("USD/CHF")
-    # client.subscribeTo(["EUR/USD", "BTC/USD"])
-    client.subscribeToAll()
-
-
 client = ForexDataClient('0JHZqgJf7V3tvd7BA3MGThQB3NqVX7F9')
-client.onUpdate(onUpdate)
-client.onConnect(onConnect)
-client.onMessage(onMessage)
-client.connect()
 
 
-# print(client.getQuotes(['EUR/USD']))
+# def onUpdate(value):
+#     print(value)
+
+
+# def onMessage(value):
+#     print(value)
+
+
+# def onConnect():
+#     # client.subscribeTo("USD/CHF")
+#     # client.subscribeTo(["EUR/USD", "BTC/USD"])
+#     client.subscribeToAll()
+
+
+# client.onUpdate(onUpdate)
+# client.onConnect(onConnect)
+# client.onMessage(onMessage)
+# client.connect()
+
+
+print(client.getQuotes(['EUR/USD']))
 # print(client.getSymbols())
 # print(client.getQuotes(client.getSymbols()))
 # print(client.getQuotes(["EUR/USD", "HUF/CHF", "TWD/SEK", "GNF/USD", "DKK/EUR", "GBP/SGD", "NPR/USD", "USD/CLY",
